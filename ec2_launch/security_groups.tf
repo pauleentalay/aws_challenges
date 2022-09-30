@@ -9,14 +9,14 @@ resource "aws_security_group" "my_public_app_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [data.aws_subnet.public_subnet_1.cidr_block]
+    cidr_blocks = ["0.0.0.0/0"] #data.aws_subnet.public_subnet_1.cidr_block  # why public subnet alone does not work?
   }
 
   ingress {
     description = "Internet access to public subnet"
     from_port   = 0
     to_port     = 0
-    protocol    = "tcp"
+    protocol    = "-1"
     cidr_blocks = [data.aws_subnet.public_subnet_1.cidr_block]
   }
 
