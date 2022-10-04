@@ -17,7 +17,15 @@ resource "aws_security_group" "my_public_app_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [data.aws_subnet.public_subnet_1.cidr_block]
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "HTTP to public subnet"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   # OUTBOUND CONNECTIONS
@@ -26,7 +34,23 @@ resource "aws_security_group" "my_public_app_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"                                         # TCP + UDP
-    cidr_blocks = [data.aws_subnet.public_subnet_1.cidr_block] # all traffic
+    cidr_blocks =  ["0.0.0.0/0"] # all traffic
+  }
+
+  egress {
+    description = "Allow SSH out of the public subnet and to get into the private subnet"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"                                         # TCP + UDP
+    cidr_blocks = ["0.0.0.0/0"] # all traffic
+  }
+
+  egress {
+    description = "HTTP to public subnet"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -41,6 +65,32 @@ resource "aws_security_group" "my_private_app_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [data.aws_subnet.private_subnet_1.cidr_block]
+    cidr_blocks = [data.aws_subnet.public_subnet_1.cidr_block]
   }
+
+  ingress {
+    description = "HTTP to public subnet"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [data.aws_subnet.public_subnet_1.cidr_block]
+  }
+
+  egress {
+    description = "Allow access to the world"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"                                         # TCP + UDP
+    cidr_blocks =  ["0.0.0.0/0"] # all traffic
+  }
+
+  egress {
+    description = "HTTP to public subnet"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
 }
