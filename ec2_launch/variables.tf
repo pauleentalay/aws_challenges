@@ -25,6 +25,11 @@ variable "private_subnet_1_name" {
   type        = string
 }
 
+variable "public_subnet_2_name" {
+  description = "Name of public subnet for the project"
+  type        = string
+}
+
 variable "ec2_type" {
   description = "Type of EC2 server"
   type        = string
