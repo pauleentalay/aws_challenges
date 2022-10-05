@@ -28,3 +28,20 @@ data "aws_subnet" "private_subnet_1" {
     values = [var.private_subnet_1_name]
   }
 }
+
+data "aws_subnet" "public_subnet_2" {
+  filter {
+    name   = "tag:Name"
+    values = [var.public_subnet_2_name]
+  }
+}
+
+
+resource "aws_db_subnet_group" "default" {  
+  name = "main"
+  subnet_ids = [data.aws_subnet.public_subnet_1.id, data.aws_subnet.public_subnet_2.id]
+  tags = {
+  Name = "My DB subnet group"
+}
+
+}
