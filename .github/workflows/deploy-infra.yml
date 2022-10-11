@@ -13,7 +13,6 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::247548036690:role/github-actions-oidc
         aws-region: "eu-central-1"
-        
 
     - name: Clone/Checkout your repository code
       uses: actions/checkout@v2
@@ -22,7 +21,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform init
-      working-directory: ec2_launch/
+      working-directory: ./ec2_launch/
       run: terraform init
 
     - name: Terraform Plan
