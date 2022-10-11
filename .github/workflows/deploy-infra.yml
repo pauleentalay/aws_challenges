@@ -1,5 +1,8 @@
 name: Terraform deployment for VPC
-on: [push]
+on:
+  push:
+    paths:
+      - 'ec2_launch/**'
 jobs:
   terraform-deployment:
     runs-on: ubuntu-latest
