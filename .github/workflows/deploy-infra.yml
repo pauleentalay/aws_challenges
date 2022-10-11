@@ -25,7 +25,9 @@ jobs:
       run: terraform init
 
     - name: Terraform Plan
+      working-directory: ./ec2_launch/
       run: terraform plan
 
     - name: Terraform Apply
+      working-directory: ./ec2_launch/
       run: terraform apply -auto-approve
