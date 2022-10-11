@@ -8,7 +8,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: arn:aws:iam::247548036690:role/github-actions-oidc
-        aws-region: "eu- central-1"
+        aws-region: "eu-central-1"
 
     - name: Clone/Checkout your repository code
       uses: actions/checkout@v2
