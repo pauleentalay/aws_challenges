@@ -3,12 +3,17 @@ on: [push]
 jobs:
   terraform-deployment:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      id-token: write
+      contents: read
     steps:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: arn:aws:iam::247548036690:role/github-actions-oidc
         aws-region: "eu-central-1"
+        
 
     - name: Clone/Checkout your repository code
       uses: actions/checkout@v2
