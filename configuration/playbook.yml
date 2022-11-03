@@ -1,0 +1,11 @@
+- hosts: webserver
+  become: yes
+  tasks:
+    - name: Update the apt-get of the ec2 instance
+      apt:
+        update_cache: yes
+
+    - name: Copy the template file to the webserver
+      template:
+        src: "index.html.j2"
+        dest: "/var/www/html/index.html"
