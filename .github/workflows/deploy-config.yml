@@ -17,10 +17,10 @@ jobs:
       - name: Clone/Checkout your repository code
         uses: actions/checkout@v2
 
-      #- name: Install Ansible
-      #  run: sudo apt install
-
-      - name: Ansible set-up
-        uses: tomasnorre/ansible-cli-action@0.0.5
-        with:
-          command: "ansible-playbook playbook.yml"
+      - name: Install PIP
+        run: |
+          sudo apt update
+          sudo apt install python3-pip -y
+      
+      - name: Install Ansible
+        run: python3 -m pip install --user ansible
