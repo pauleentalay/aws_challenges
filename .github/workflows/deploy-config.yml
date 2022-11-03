@@ -17,9 +17,10 @@ jobs:
       - name: Clone/Checkout your repository code
         uses: actions/checkout@v2
 
+      #- name: Install Ansible
+      #  run: sudo apt install
+
       - name: Ansible set-up
-        uses: saubermacherag/ansible-playbook-docker-action@v1.4
+        uses: tomasnorre/ansible-cli-action@0.0.5
         with:
-          playbookName: 'playbook.yml'
-          inventoryFile: 'inventory.yml'
-          requirementsFile: ".ansible/requirements.yml"
+          command: "ansible-playbook playbook.yml"
