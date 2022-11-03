@@ -17,16 +17,8 @@ jobs:
       - name: Clone/Checkout your repository code
         uses: actions/checkout@v2
 
-      - name: Terraform setup
-        uses: hashicorp/setup-terraform@v1
-
-      - name: Terraform init
-        working-directory: ./ec2_launch/
-        run: terraform init
-
       - name: Ansible set-up
         uses: saubermacherag/ansible-playbook-docker-action@v1.4
-        working-directory: ./configuration/
         with:
           playbookName: 'playbook.yml'
           inventoryFile: 'inventory.yml'
