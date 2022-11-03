@@ -8,28 +8,28 @@ jobs:
       id-token: write
       contents: read
     steps:
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::247548036690:role/github-actions-oidc
-        aws-region: "eu-central-1"
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::247548036690:role/github-actions-oidc
+          aws-region: "eu-central-1"
 
-    - name: Clone/Checkout your repository code
-      uses: actions/checkout@v2
+      - name: Clone/Checkout your repository code
+        uses: actions/checkout@v2
 
-    - name: Terraform setup
-      uses: hashicorp/setup-terraform@v1
+      - name: Terraform setup
+        uses: hashicorp/setup-terraform@v1
 
-    - name: Terraform init
-      working-directory: ./ec2_launch/
-      run: terraform init
+      - name: Terraform init
+        working-directory: ./ec2_launch/
+        run: terraform init
 
-    - name: Ansible set-up
-      uses: saubermacherag/ansible-playbook-docker-action@v1.4
-      
-    - name: Run Ansible  
-      working-directory: ./configuration/
-      with:
-        playbookName: 'playbook.yml'
-        inventoryFile: 'inventory.yml'
-        requirementsFile: ".ansible/requirements.yml"
+      - name: Ansible set-up
+        uses: saubermacherag/ansible-playbook-docker-action@v1.4
+        
+      - name: Run Ansible  
+        working-directory: ./configuration/
+        with:
+          playbookName: 'playbook.yml'
+          inventoryFile: 'inventory.yml'
+          requirementsFile: ".ansible/requirements.yml"
