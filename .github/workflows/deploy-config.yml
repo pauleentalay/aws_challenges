@@ -26,8 +26,6 @@ jobs:
 
       - name: Ansible set-up
         uses: saubermacherag/ansible-playbook-docker-action@v1.4
-        
-      - name: Run Ansible  
         working-directory: ./configuration/
         with:
           playbookName: 'playbook.yml'
