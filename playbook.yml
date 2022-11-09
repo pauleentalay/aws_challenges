@@ -7,14 +7,14 @@
   tasks:
     - ansible.builtin.set_fact:
         # elasticsearch_ip: "{{ _elasticSearch_server.ansible_default_ipv4.address }}"
-      ssh_key: "{{ GROUP3_EC2_SSH }}"
+        my_ssh_key: "{{ GROUP3_EC2_SSH }}"
 
 - hosts: 18.184.53.180
   become: yes
   vars:
     ansible_user: ubuntu
     ansible_ssh_common_args: -o StrictHostKeyChecking=no -o ProxyCommand="sh -c \"aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'\""
-    ansible_ssh_private_key_file: "{{ ssh_key }}" 
+    ansible_ssh_private_key_file: "{{ my_ssh_key }}" 
     #~/.ssh/group-3-ta-elk-ec2
   tasks:
     - debug: var=ansible_default_ipv4.address
