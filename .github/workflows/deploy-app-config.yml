@@ -44,4 +44,4 @@ jobs:
       - name: Run Ansible playbook
         env:
           my_ssh_key: ${{ secrets.GROUP3_EC2_SSH }}
-        run: ansible-playbook playbook.yml --private-key
+        run: ansible-playbook playbook.yml
