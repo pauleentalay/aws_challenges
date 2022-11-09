@@ -5,7 +5,7 @@ on:
       - main
   push:
     branches:
-      - GH_Actions_Ansible
+      - trial_ssh
 jobs:
   ansible-deployment:
     runs-on: ubuntu-latest
