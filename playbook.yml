@@ -7,6 +7,8 @@
     - ansible.builtin.set_fact:
         # elasticsearch_ip: "{{ _elasticSearch_server.ansible_default_ipv4.address }}"
         my_ssh_key: "{{ lookup('env', 'GROUP3_EC2_SSH') }}"
+    - debug:
+        msg: "{{ my_ssh_key }}"
 
 - hosts: 18.184.53.180
   become: yes
