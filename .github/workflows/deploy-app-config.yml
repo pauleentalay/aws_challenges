@@ -42,4 +42,4 @@ jobs:
       #     aws-region: "eu-central-1"
       
       - name: Run Ansible playbook
-        run: ansible-playbook playbook.yml --extra_vars "my_ssh_key={{ GROUP3_EC2_SSH }}"
+        run: ansible-playbook playbook.yml #--extra-vars "my_ssh_key={{ GROUP3_EC2_SSH }}"
