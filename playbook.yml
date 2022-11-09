@@ -8,7 +8,7 @@
         # elasticsearch_ip: "{{ _elasticSearch_server.ansible_default_ipv4.address }}"
       ssh_key: "{{ secrets.GROUP3_EC2_SSH }}"
 
-- hosts: _logstash_server
+- hosts: 18.184.53.180
   become: yes
   vars:
     ansible_user: ubuntu

@@ -13,6 +13,7 @@ jobs:
       packages: write
       contents: read
       id-token: write
+    environment: GROUP3_EC2
     steps:
       - name: Install SSM plugin
         run: |
