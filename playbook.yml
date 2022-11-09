@@ -6,7 +6,7 @@
   tasks:
     - ansible.builtin.set_fact:
         # elasticsearch_ip: "{{ _elasticSearch_server.ansible_default_ipv4.address }}"
-        my_ssh_key: "{{ GROUP3_EC2_SSH }}"
+        my_ssh_key: "{{ env.GROUP3_EC2_SSH }}"
 
 - hosts: 18.184.53.180
   become: yes
