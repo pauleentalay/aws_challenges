@@ -3,6 +3,7 @@
 #sets environment variables?
 - hosts: localhost
   name: Set elasticSearch_ip
+  environment: GROUP3_EC2
   tasks:
     - ansible.builtin.set_fact:
         # elasticsearch_ip: "{{ _elasticSearch_server.ansible_default_ipv4.address }}"
