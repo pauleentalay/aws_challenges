@@ -42,6 +42,7 @@ jobs:
       #     aws-region: "eu-central-1"
       
       - name: Run Ansible playbook
-        env:
+        shell: bash
+        with:
           my_ssh_key: ${{ secrets.GROUP3_EC2_SSH }}
-        run: ansible-playbook playbook.yml --private-key $my_ssh_key
+        run: ansible-playbook playbook.yml --private-key "$my_ssh_key"
